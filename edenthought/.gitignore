@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+
+# Environment variables
+edenthought/.env
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+media/
+
+# Logs & OS
+*.log
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
