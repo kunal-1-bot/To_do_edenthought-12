@@ -4,15 +4,11 @@
 
 import environ
 
+from pathlib import Path
 env = environ.Env()
-
 environ.Env.read_env()
 
 
-
-
-
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +21,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -129,9 +125,9 @@ MEDIA_URL ='/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [BASE_DIR/'static']
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -146,10 +142,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST ='smtp.gmail.com'
-EMAIL_PORT ='587'
-EMAIL_USE_TLS ='True'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = 'creatorthoughtsss@gmail.com'
-EMAIL_HOST_PASSWORD ='passss'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
-DEFAULT_FROM_EMAIL = 'creatorthoughtsss@gmail.com'
