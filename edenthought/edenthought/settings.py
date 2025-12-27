@@ -2,16 +2,16 @@
 
 # - import and initialise our enviroment variables
 
+import os
 import environ
-
 from pathlib import Path
-env = environ.Env()
-environ.Env.read_env()
 
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Build paths inside the project
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables explicitly
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
